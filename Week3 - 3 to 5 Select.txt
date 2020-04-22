@@ -1,0 +1,56 @@
+SELECT * FROM tabEmployment;
+/*
+    REF_EMPLOYEE
+    -----------------------------------------------------------------------
+    REF_POSITION
+    -----------------------------------------------------------------------
+    220208E383D64C8BA740AC8D397C55AE51E5D7794DA2E5AA9E469E8FB3F8B6D2364235
+    2202081920048A4FEC4D818C1B8340891572870E205549472F43EE8D603E49DFC8DB68
+    
+    2202087DDC01364F78461EACE00144C7344F15794DA2E5AA9E469E8FB3F8B6D2364235
+    22020872FCC569A55C404A9065ECC9A9AC654F0E205549472F43EE8D603E49DFC8DB68
+    
+    2202089837ADA762434432AB8CCDFA05329D34794DA2E5AA9E469E8FB3F8B6D2364235
+    220208A849E990E92047B3A70206FA0F35DBCB0E205549472F43EE8D603E49DFC8DB68
+    
+*/
+
+/
+
+SELECT DEREF(e.ref_Employee), DEREF(e.ref_Position) FROM tabEmployment e;
+/*
+    DEREF(e.ref_Employee)
+        WEEK2.TYPEMPLOYEE(12, WEEK2.TYPPERSON(WEEK2.TYPNAME('John', 'E', 'Smith'),
+        WEEK2.TYPADDRESS('10 Newington', 'Edinburgh', 'EH10 5DT'),
+        WEEK2.TYPPHONE('07747588694', '0131556916', '07799922333'), '1974-12-21 00:00:00.0', 'Male'))
+        
+    DEREF(e.ref_Position)
+        WEEK2.TYPJOB(1, 'Manager', 50000, 5)
+        
+    #FOR ALL ENTRIES#
+*/
+
+/
+
+/* 4. Using the employment table, print the names of all employees whose salary is larger than 20000 */
+SELECT e.ref_employee.employee.pName FROM tabemployment e
+WHERE e.ref_position.jsalary > 20000;
+
+/
+
+/*  Print the jobtitles of all employees who live in Edinburgh */
+SELECT e.ref_position.jTitle FROM tabemployment e
+WHERE e.ref_employee.employee.paddress.city = 'Edinburgh';
+
+/*  5. Evaluate the differences between the relational approach and the object relational approach that you have learned so far.
+    Which of the approaches is easier to design, easier to maintain or easier to use? Is there any danger of anomalies
+    or inconsistencies in the object-relational approach? Is normalisation relevant for the object-relational approach?
+    
+    #1  Easier to design object relational - objects map to real life situations
+
+    #2  One problem can be multiplied through many subtypes if it is not identified,
+        although fixing the problem can cascade down 
+
+    #3  No normalisation needed for object relational
+    
+*/

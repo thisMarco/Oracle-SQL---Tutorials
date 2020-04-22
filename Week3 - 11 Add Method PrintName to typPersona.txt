@@ -1,0 +1,21 @@
+/*  11. Alter the person type from last week's exercises so that it has a print_name method.
+    This method prints the lastname, a comma, a space, the firstname, a space and then the middle initial.
+    The PL/SQL string concatenation operator is ||.
+*/
+
+ALTER TYPE typPerson
+ADD MEMBER FUNCTION PrintName RETURN STRING
+CASCADE;
+
+/
+
+CREATE OR REPLACE TYPE BODY typPerson AS
+MEMBER FUNCTION PrintName RETURN STRING IS
+BEGIN
+    return self.pName.lastname || ', ' || self.pname.firstname || ', ' || self.pname.middleInit;
+END PrintName;
+END;
+
+/
+
+SELECT e.employee.PrintName() FROM tabemployee e;

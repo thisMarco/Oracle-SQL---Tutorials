@@ -1,0 +1,6 @@
+/*  5 Drop Table and Types  */
+
+DROP TABLE tabPeople;
+DROP TYPE typPeople;
+DROP TYPE typName;
+DROP TYPE typAddress;

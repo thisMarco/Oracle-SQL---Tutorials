@@ -1,0 +1,36 @@
+/* 2. Insert 5 tuples in the peopleTable */
+
+INSERT INTO tabPeople
+    VALUES
+        (   typName('Marco', 'Turtle'),
+            typAddress('3, Know Street', 'Edinburgh', 'EH10 5DT'),
+            '18-Feb-1986'
+        );
+
+INSERT INTO tabPeople
+    VALUES
+        (   typName('Brogan', 'Rabbit'),
+            typAddress('10, Uphill Crescent', 'Longridge', 'EH47 7TS'),
+            '21-Apr-1999'
+        );
+        
+INSERT INTO tabPeople
+    VALUES
+        (   typName('Fletcher', 'Cat'),
+            typAddress('4A, This Avenue', 'Edinburgh', 'EH6 9OI'),
+            '1-Dec-1998'
+        );
+
+INSERT INTO tabPeople
+    VALUES
+        (   typName('Francesco', 'Reggio'),
+            typAddress('77, First Yard', 'Livingston', 'EH54 8GG'),
+            '15-Apr-1986'
+        );
+        
+INSERT INTO tabPeople
+    VALUES
+        (   typName('Callum', 'Yellow'),
+            typAddress('45, Rowan Street', 'Livingston', 'EH54 1SD'),
+            '30-Mar-1999'
+        );

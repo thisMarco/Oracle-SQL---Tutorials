@@ -1,0 +1,38 @@
+/*  7. Create a table "project_membership" with two columns "project_id" and "member" so that the project IDs
+    are references to projects but can only be filled with data from project_table.
+    The members are references to person and can only be filled with data from employee_table.
+*/
+
+CREATE TABLE tabProjMembership
+(
+    pID REF typProject SCOPE IS tabProjects,
+    member REF typEmployee SCOPE IS tabEmployee
+);
+    
+/    
+    
+/*  Insert 3 rows into this table. Select all rows from this table using dereferencing of the two columns.  */
+
+INSERT INTO tabProjMembership
+SELECT ref(p), ref(e)
+FROM tabEmployee e, tabProjects p
+WHERE e.emp_ID = 12 AND p.pID = 1;
+
+/
+
+INSERT INTO tabProjMembership
+SELECT ref(p), ref(e)
+FROM tabEmployee e, tabProjects p
+WHERE e.emp_ID = 13 AND p.pID = 2;
+
+/
+
+INSERT INTO tabProjMembership
+SELECT ref(p), ref(e)
+FROM tabEmployee e, tabProjects p
+WHERE e.emp_ID = 14 AND p.pID = 3;
+
+/
+
+SELECT DEREF(p.member), deref(p.pID)
+FROM tabprojmembership p;

@@ -1,0 +1,95 @@
+/* 1. Complete Week3    */
+/* 2. Complete example in the Slides    */
+
+CREATE TYPE typPhonesArray AS VARRAY(10) OF VARCHAR2(12);
+
+CREATE TABLE tabCompany1
+(
+    cName VARCHAR2(20),
+    cPhones typPhonesArray
+);
+
+/
+
+/*  3. Create table company1 and insert some data into it, as described in the Notes    */
+
+INSERT INTO tabCompany1 VALUES
+    ('Pear', typPhonesArray('123-4758','123-2534'));
+/
+INSERT INTO tabCompany1 VALUES
+    ('Moonsung', typPhonesArray('234-4758','234-2534'));
+/   
+INSERT INTO tabCompany1 VALUES
+    ('Yeskia', typPhonesArray('345-4758','345-2534'));
+/
+
+/*  4. Create table company2 and insert some data into it, as described in the Notes    */
+
+CREATE TYPE typPhoneNested AS TABLE OF VARCHAR2(12);
+
+/
+
+CREATE TABLE tabCompany2
+(
+    cName VARCHAR2(20),
+    cPhones typPhoneNested
+) NESTED TABLE cPhones STORE AS tabPhoneNested;
+
+/
+
+INSERT INTO tabCompany2 VALUES
+    ('Lemon', typPhoneNested('123-456','789-0123'));
+/
+INSERT INTO tabCompany2 VALUES
+    ('Jupitersung', typPhoneNested('234-456','890-0123'));
+/
+INSERT INTO tabCompany2 VALUES
+    ('Maybekia', typPhoneNested('345-456','901-0123'));
+
+/
+
+/*  5. Create a type phone_code that has area_code and local_number as attributes.
+    Create a type phone_numbers as a table of phone_code.
+    Create a table company3 that has the attributes name and phone, where phone is of type phone_numbers.
+*/
+
+CREATE TYPE typPhoneCode AS OBJECT
+(
+    areaCode VARCHAR2(4),
+    pNumber VARCHAR2(8)
+);
+
+/
+
+CREATE TYPE typPhoneCodeNested AS TABLE OF typPhoneCode;
+
+/
+
+CREATE TABLE tabCompany3
+(
+    cName VARCHAR2(20),
+    cPhones typPhoneCodeNested
+) NESTED TABLE cPhones STORE AS tabPhoneCodeNested;
+
+/
+
+/*  6. Insert several rows into company3    */
+
+INSERT INTO tabCompany3 VALUES
+    ('Orange', typPhoneCodeNested(typPhoneCode('0123','4-1234')));
+/
+INSERT INTO tabCompany3 VALUES
+    ('Mercurysung', typPhoneCodeNested(typPhoneCode('1234','5-1234')));
+/
+INSERT INTO tabCompany3 VALUES
+    ('Yakia', typPhoneCodeNested(typPhoneCode('2345','6-1234')));
+/
+INSERT INTO tabCompany3 VALUES
+    ('HowWhy', typPhoneCodeNested(typPhoneCode('3456','7-1234'),typPhoneCode('4567','8-1234'),typPhoneCode('5678','9-1234')));
+/
+INSERT INTO tabCompany3 VALUES
+    ('Carrola', typPhoneCodeNested(typPhoneCode('6789','0-1234')));
+
+/
+
+SELECT c.cName, t.* FROM tabCompany3 c, table(cPhones) t;

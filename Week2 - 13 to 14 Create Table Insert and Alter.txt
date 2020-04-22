@@ -1,0 +1,64 @@
+/*  12. Create a type "job" with four columns: "jobtitle" of datatype VARCHAR(20) and "job_ID",
+        "salary_amount" and "years_of_experience" of datataype INT.
+*/
+
+CREATE TYPE typJob AS OBJECT
+(
+    jID INT,
+    jTitle VARCHAR2(20),
+    jSalary INT,
+    yExp INT
+)   NOT FINAL;
+
+/
+
+/*  13. Create an object table "job_table" for this type.
+        Insert 5 rows into this table.
+*/
+
+CREATE TABLE tabJobs OF typJob;
+
+/
+
+INSERT INTO tabJobs VALUES
+(
+    '1','Manager',50000,5
+);
+
+/
+
+INSERT INTO tabJobs VALUES
+(
+    '2','Supervisor',30000,3
+);
+
+/
+
+INSERT INTO tabJobs VALUES
+(
+    '3','Accountant',60000,8
+);
+
+/
+
+INSERT INTO tabJobs VALUES
+(
+    '4','Lackie',20000,0
+);
+
+/
+
+INSERT INTO tabJobs VALUES
+(
+    '5','Contractor',70000,3
+);
+
+/
+
+/*  14. Alter both the employee_table and the job_table so that they have primary keys. */
+
+ALTER TABLE tabJobs ADD PRIMARY KEY (jID);
+
+/
+
+ALTER TABLE tabEmployee ADD PRIMARY KEY (emp_ID);

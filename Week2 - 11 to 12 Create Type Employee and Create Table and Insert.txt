@@ -1,0 +1,55 @@
+/* 10.  Create a type "typEmployee" under "typPerson" that has an additional attribute
+        "emp_ID" of type INT. Create it as NOT FINAL.
+*/
+
+CREATE TYPE typEmployee AS OBJECT
+(
+    emp_ID INT,
+    employee typPerson
+) 
+    NOT FINAL;
+
+/
+
+/* 11.  Create a corresponding employee_table and insert 3 rows into it.    */
+
+CREATE TABLE tabEmployee OF typEmployee;
+
+/
+
+INSERT INTO tabEmployee VALUES
+(
+    '12',
+    typPerson(
+        typName('John', 'E', 'Smith'),
+        typAddress('10 Newington', 'Edinburgh', 'EH10 5DT'),
+        typPhone('07747588694', '0131556916', '07799922333'),
+        '21-Dec-1974',
+        'Male')
+)
+    
+/
+
+INSERT INTO tabEmployee VALUES
+(
+    '13',
+    typPerson(
+        typName('Peter','E' ,'Kelly'),
+        typAddress('10 Leith', 'Edinburgh', 'EH12 1DS'),
+        typPhone('07747588695', '0131556917', '07799922334'),
+        '1-Nov-1984',
+        'Male')
+)
+
+/
+
+INSERT INTO tabEmployee VALUES
+(
+    '14',
+    typPerson(
+        typName('Gary','E' ,'Smith'),
+        typAddress('10 Liberton', 'Edinburgh', 'EH13 9IK'),
+        typPhone('07747588696', '0131556918', '07799922335'),
+        '7-Feb-1977',
+        'Male')
+)

@@ -1,0 +1,14 @@
+/*  Dropping Tables */
+DROP TABLE tabEmployee;
+DROP TABLE tabPerson;
+DROP TABLE tabPeople;
+
+/*  Dropping Types  */
+DROP TYPE typAddress_W2;
+DROP TYPE typAddress;
+DROP TYPE typStreet;
+DROP TYPE typEmployee;
+DROP TYPE typPerson;
+DROP TYPE typPeople;
+DROP TYPE typName;
+DROP TYPE typPhone;

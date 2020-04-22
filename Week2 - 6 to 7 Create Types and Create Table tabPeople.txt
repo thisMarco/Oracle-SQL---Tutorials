@@ -1,0 +1,44 @@
+/* 6. Create a type "person" which contains first name, middle initial, last name,
+    phone (business, home, mobile) and address.
+    Make sure that first name, middle initial, last name are closely related and that the
+    phone numbers are closely related to each other 
+*/
+
+CREATE TYPE typName AS OBJECT
+(
+    firstname VARCHAR2(20),
+    middleInit VARCHAR2(1),
+    lastname VARCHAR2(20)
+)   NOT FINAL
+
+/
+
+CREATE TYPE typPhone AS OBJECT
+(
+    home VARCHAR2(11),
+    mobile VARCHAR2(11),
+    office VARCHAR2(11)
+)   NOT FINAL
+
+/
+
+CREATE TYPE typAddress AS OBJECT
+(
+    street VARCHAR2(20),
+    city VARCHAR2(20),
+    postcode VARCHAR2(8)
+)   NOT FINAL
+
+/
+
+CREATE TYPE typPerson AS OBJECT
+(
+    pName typName,
+    pAddress typAddress,
+    pPhone typPhone,
+    dob date
+)   NOT FINAL
+
+/
+
+CREATE TABLE tabPeople OF typPerson;

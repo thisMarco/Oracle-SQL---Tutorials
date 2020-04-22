@@ -1,0 +1,51 @@
+/*  An object type can have several methods. These can be member methods (instance methods) or static methods (class methods).
+    An object type with methods must have a separate type body which contains the code for the methods.
+    Methods can either be functions (which return a value) or procedures (which do not have a return statement).
+    Methods can be written in PL/SQL or almost any other programming language.
+    To use another language apart from PL/SQL the language name must be stated in the type body
+    (e.g., MEMBER FUNCTION ... RETURN ... AS LANGUAGE JAVA ...).
+    
+    Examples in this tutorial all use PL/SQL.  
+    The following example shows a type job2, which contains the same columns as the type job (from exercises for subtypes),
+    but also declares a method "evaluate_qualification".
+*/
+
+CREATE TYPE typJob2 AS OBJECT
+(
+    jID INT,
+    jTitle VARCHAR2(20),
+    jSalary INT,
+    yExperience INT,
+    
+    MEMBER FUNCTION evQualification RETURN STRING,
+    MEMBER FUNCTION mSalary(n real) RETURN REAL
+);
+
+/
+
+/*  The details of "evaluate_qualification" are defined in the type body.
+    It prints "too bad" for all jobs that have less than 2 years of experience,
+    "OK" for 2 years of experience and "great" for more than two years of experience.
+*/
+
+CREATE OR REPLACE TYPE BODY typJob2 AS
+MEMBER FUNCTION evQualification RETURN STRING IS
+BEGIN
+    if self.yExperience < 2
+    then
+        return 'Too_Bad';
+    elsif self.yExperience = 2
+    then
+        return 'OK';
+    else
+        return 'Great';
+    end if;
+END evQualification;
+
+MEMBER FUNCTION mSalary(n real) RETURN REAL IS
+salary real;
+BEGIN
+    salary :=(self.jSalary/n);
+    return salary;
+END mSalary;
+END;

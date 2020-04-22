@@ -1,0 +1,4 @@
+/* 3. Find surname and street of Marco Turtle */
+
+SELECT p.pname.surname, p.paddress.street FROM tabPeople p
+    WHERE p.pname.surname = 'Turtle' AND p.pname.firstname = 'Marco';

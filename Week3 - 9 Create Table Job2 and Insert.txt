@@ -1,0 +1,40 @@
+/*  9. Create an object table for job2 and insert three rows. */
+
+CREATE TABLE tabJobs2 OF typJob2;
+
+/
+
+INSERT INTO tabJobs2 VALUES
+(3,'Accountant',60000,8);
+
+/
+
+INSERT INTO tabJobs2 VALUES
+(4,'Lackie',20000,0);
+
+/
+
+INSERT INTO tabJobs2 VALUES
+(5,'Contractor',70000,3);
+
+/
+
+INSERT INTO tabJobs2 VALUES
+(6,'Security Guard',22000,2);
+
+/
+
+/*  Write an SQL statement that selects evaluate_qualification and monthly salaries for all rows of the table.  */
+
+SELECT j.evQualification()
+FROM tabjobs2 j;
+
+/
+
+/*  Write an SQL statement that selects all columns for rows which have an 'OK' value for evaluate_qualification
+    and a half-yearly salary of more than 10000.
+*/
+
+SELECT *
+FROM tabjobs2 j
+WHERE  j.evQualification() = 'OK' AND j.mSalary(2) > 10000;

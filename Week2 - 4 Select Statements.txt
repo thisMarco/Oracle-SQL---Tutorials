@@ -1,0 +1,12 @@
+/* 4. Try different select statements on table peopleTable, such as “SELECT * FROM peopleTable”,
+    “SELECT name FROM peopleTable”,
+    “SELECT name.surname FROM peopleTable”,
+    “SELECT name.surname FROM peopleTable WHERE name.firstname = ‘John’”, … */
+    
+SELECT * FROM tabPeople;
+
+SELECT p.pname.firstname FROM tabPeople p;
+
+SELECT p.pname.surname FROM tabPeople p
+    WHERE p.pname.firstname = 'Marco';
+

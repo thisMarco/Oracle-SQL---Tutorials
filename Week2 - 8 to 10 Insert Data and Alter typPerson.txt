@@ -1,0 +1,76 @@
+/* 8. INSERT five rows of data INTO "tabPeople" */
+
+/*
+DROP TABLE tabPeople;
+
+/
+
+DROP TYPE typPerson;
+
+/
+
+CREATE TYPE typPerson AS OBJECT
+(
+    pName typName,
+    pAddress typAddress,
+    pPhone typPhone,
+    dob date
+)   NOT FINAL
+
+/
+
+CREATE TABLE tabPeople OF typPerson;
+
+/
+*/
+INSERT INTO tabPeople VALUES
+(
+    typName('John', 'E', 'Smith'),
+    typAddress('10 Newington', 'Edinburgh', 'EH10 5DT'),
+    typPhone('07747588694', '0131556916', '07799922333'),
+    '11-Jan-1985'
+);
+
+/
+
+INSERT INTO tabPeople VALUES
+(
+    typName('Peter', 'E', 'Kelly'),
+    typAddress('10 Newington', 'Edinburgh', 'EH10 5DT'),
+    typPhone('07747588695', '0131556917', '07799922334'),    
+    '21-Dec-1975'
+);
+
+/
+
+INSERT INTO tabPeople VALUES
+(
+    typName('Gary', 'E', 'Smith'),
+    typAddress('10 Liberton', 'Edinburgh', 'EH13 9IK'),
+    typPhone('07747588696', '0131556918', '07799922335'),
+    '1-May-1989'
+);
+
+/
+
+INSERT INTO tabPeople VALUES
+(
+    typName('Paul',  'E', 'Henderson'),
+    typAddress('10 Morningside', 'Edinburgh', 'EH14 8JD'),
+    typPhone('07747588697', '0131556919', '07799922336'),
+    '1-Jun-1989'
+);
+
+/
+
+INSERT INTO tabPeople VALUES
+(
+    typName('Debi', 'E', 'So'),
+    typAddress('10 Stockbridge', 'Edinburgh', 'EH15 3KG'),
+    typPhone('07747588698', '0131556920', '07799922337'),
+    '1-Jun-1989'
+);
+
+/
+
+ALTER TYPE typPerson ADD ATTRIBUTE (genger VARCHAR2(8)) CASCADE;

@@ -1,0 +1,29 @@
+/* 1. Creat types Name, Address, peopleType and table peopleTable described in Notes */
+
+CREATE TYPE typName AS OBJECT
+(
+    firstname VARCHAR2(20),
+    surname VARCHAR2(20)
+)   NOT FINAL
+
+/
+
+CREATE TYPE typAddress AS OBJECT
+(
+    street VARCHAR2(20),
+    city VARCHAR2(20),
+    postal_code VARCHAR2(8)
+)   NOT FINAL
+
+/
+
+CREATE TYPE typPeople AS OBJECT
+(
+    pName typName,
+    pAddress typAddress,
+    dateOfBirth date
+)   NOT FINAL
+
+/
+
+CREATE TABLE tabPeople of typPeople;

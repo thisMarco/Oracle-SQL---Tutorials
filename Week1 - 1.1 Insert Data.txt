@@ -1,0 +1,72 @@
+/* 1.1 Insert test data (at least five tuples for each table) */
+
+INSERT INTO Branch(bId, street, city, p_code, bPhone)
+    WITH names AS
+        (
+            SELECT 'WHIT1','East Main Street','Whitburn','EH47 0AA','01524852321' FROM dual UNION ALL
+            SELECT 'BLAC1','West Main Street','Blackburn','EH48 0LK','0155231588' FROM dual UNION ALL
+            SELECT 'LONG1','Main Street','Longridge','EH47 9IY','0153695251' FROM dual UNION ALL
+            SELECT 'LIVI1','Almondvale Crescent','Livigston','EH54 5RF','01745252332' FROM dual UNION ALL
+            SELECT 'EDIN1','Princess Street','Edinburgh','EH10 1XZ','0159852231' FROM DUAL
+        )
+        SELECT * FROM names;
+
+INSERT INTO Accounts(accNumber, accType, balance, bId, inRate, limitOfFreeOD, openDate)
+    WITH names AS
+        (
+            SELECT '1','Personal',1523.10,'EDIN1',7.50,50.00,'23-Dec-2019' FROM dual UNION ALL
+            SELECT '2','Business',100523.10,'WHIT1',5.50,500.00,'01-Jan-2017' FROM dual UNION ALL
+            SELECT '3','Personal',152325.90,'EDIN1',6.50,350.00,'09-Mar-2018' FROM dual UNION ALL
+            SELECT '4','Business',125599.00,'LONG1',5.50,500.00,'01-Apr-2016' FROM dual UNION ALL
+            SELECT '5','Business',200696.10,'LIVI1',5.50,500.00,'01-Jun-2019' FROM dual UNION ALL
+            SELECT '6','Personal',523.10,'BLAC1',8.50,25.00,'01-Jan-2020' FROM dual
+        )
+        SELECT * FROM names;
+
+INSERT INTO Employee(empId, street, city, p_code, empFirtName, empLastName, empHomePhone, empMobilePhone1, empMobilePhone2, supervisorId, title, salary, empNiNumber, bId, joinDate)
+VALUES ('1','Park Crescent','Bathgate','EH48 8LK','Callum','Brown','01542363220','07706528456',' ',' ','Regional Manager',150000.00,'SS125469D','EDIN1','20-Apr-2010');
+
+INSERT INTO Employee(empId, street, city, p_code, empFirtName, empLastName, empHomePhone, empMobilePhone1, empMobilePhone2, supervisorId, title, salary, empNiNumber, bId, joinDate)
+VALUES ('2','Almondvale Park','Livingston','EH54 7GH','Lucy','McDonald','01542325020','07711238456',' ','1','Branch Manager',550);
+
+INSERT INTO Employee(empId, street, city, p_code, empFirtName, empLastName, empHomePhone, empMobilePhone1, empMobilePhone2, supervisorId, title, salary, empNiNumber, bId, joinDate)
+VALUES ('3','Hills View','Longridge','EH47 1MN','Fred','Palma','01123456220','07785214456',' ','1','Branch Manager',55000.00,'SS125985H','EDIN1','10-Mar-2012');
+
+INSERT INTO Employee(empId, street, city, p_code, empFirtName, empLastName, empHomePhone, empMobilePhone1, empMobilePhone2, supervisorId, title, salary, empNiNumber, bId, joinDate)
+VALUES ('4','Train Station Road','Dundee','DD10 1AR','Jack','Turple','0152036020','07712345456',' ','1','Branch Manager',75000.00,'SA230469D','LONG1','05-Feb-2008');
+
+INSERT INTO Employee(empId, street, city, p_code, empFirtName, empLastName, empHomePhone, empMobilePhone1, empMobilePhone2, supervisorId, title, salary, empNiNumber, bId, joinDate)
+VALUES ('5','Pretty One','Blackridge','EH47 7AS','Isabelle','Squirrel','0178936020','07712654321',' ','1','Branch Manager',75000.00,'SA122169D','WHIT1','15-Feb-2009');
+
+INSERT INTO Employee(empId, street, city, p_code, empFirtName, empLastName, empHomePhone, empMobilePhone1, empMobilePhone2, supervisorId, title, salary, empNiNumber, bId, joinDate)
+VALUES ('6','Rocks Park','Broxburn','EH52 8JG','Justin','Frog','0170584020','07755554321',' ','1','Branch Manager',75000.00,'SK622100D','BLAC1','05-Dec-2015');
+
+INSERT INTO Customer(cusId,street,city,p_code,cusFirstName,cusLastName,cusHomePhone,cusMobilePhone1,cusMobilePhone2,cusNiNum)
+    VALUES ('1','Fairfield Close','Whitburn','EH47 8JH','Jamie','Jack','01520145663',' ',' ','SD123456I');
+
+INSERT INTO Customer(cusId,street,city,p_code,cusFirstName,cusLastName,cusHomePhone,cusMobilePhone1,cusMobilePhone2,cusNiNum)
+    VALUES ('2','Saxon Way','Livington','EH54 5ER','Axel','Fox','01122145663',' ',' ','SA885456I');
+
+INSERT INTO Customer(cusId,street,city,p_code,cusFirstName,cusLastName,cusHomePhone,cusMobilePhone1,cusMobilePhone2,cusNiNum)
+    VALUES ('3','Old School Close','Edinburgh','EH11 6TR','Paul','Rabbit','01554789562',' ',' ','AZ885433L');
+
+INSERT INTO Customer(cusId,street,city,p_code,cusFirstName,cusLastName,cusHomePhone,cusMobilePhone1,cusMobilePhone2,cusNiNum)
+    VALUES ('4','Lilac Avenue','Blackburn','EH47 1QA','Callum','White','01501852336',' ',' ','IO987654U');
+
+INSERT INTO Customer(cusId,street,city,p_code,cusFirstName,cusLastName,cusHomePhone,cusMobilePhone1,cusMobilePhone2,cusNiNum)
+    VALUES ('5','Princess Road','Edinburgh','EH11 7VX','James','Oldchap','06852111002',' ',' ','AA123456S');
+
+INSERT INTO CustomerAccount(cusId,accNumber)
+    VALUES ('1','1');
+
+INSERT INTO CustomerAccount(cusId,accNumber)
+    VALUES ('2','2');
+
+INSERT INTO CustomerAccount(cusId,accNumber)
+    VALUES ('3','3');
+
+INSERT INTO CustomerAccount(cusId,accNumber)
+    VALUES ('4','4');
+        
+INSERT INTO CustomerAccount(cusId,accNumber)
+    VALUES ('5','5');

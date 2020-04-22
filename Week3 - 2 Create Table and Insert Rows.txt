@@ -1,0 +1,48 @@
+/*  2. Create the employment table as described in the Notes and insert 3 rows into it. */
+
+DROP TABLE tabEmployee2;
+
+/
+
+DROP TYPE typEmployment;
+
+/
+
+CREATE TYPE typEmployment AS OBJECT
+(
+    ref_Employee REF typEmployee,
+    ref_Position REF typJob
+)
+
+/
+
+CREATE TABLE tabEmployee2 OF typEmployment;
+
+/
+
+CREATE TABLE tabEmployment
+(
+    ref_Employee REF typEmployee SCOPE IS tabEmployee,
+    ref_Position REF typJob SCOPE IS tabJobs
+);
+
+/
+
+INSERT INTO tabEmployment
+    SELECT REF(e), REF(j)
+    FROM tabJobs j, tabEmployee e
+    WHERE e.emp_id = 12 AND j.jid = 1;
+
+/
+
+INSERT INTO tabEmployment
+    SELECT REF(e), REF(j)
+    FROM tabJobs j, tabEmployee e
+    WHERE e.emp_id = 13 AND j.jid = 2;
+
+/
+
+INSERT INTO tabEmployment
+    SELECT REF(e), REF(j)
+    FROM tabJobs j, tabEmployee e
+    WHERE e.emp_id = 14 AND j.jid = 3;

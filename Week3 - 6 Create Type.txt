@@ -1,0 +1,42 @@
+/*  6. Create type tp_project as object(project_id INT, project_leader ref employee, project_title varchar2(20))    */
+
+CREATE TYPE typProject AS OBJECT
+(
+    pID INT,
+    pLeader REF typEmployee,
+    pTitle VARCHAR2(20)
+)   NOT FINAL
+
+/
+
+/*  Create a corresponding object table "project_table".
+    Alter the table so that project_id is a primary key.
+    Insert 3 rows into "project_table".
+*/
+
+CREATE TABLE tabProjects OF typProject;
+
+/
+
+INSERT INTO tabProjects
+SELECT typProject (1, ref(e), 'Research Project')
+FROM tabEmployee e
+WHERE e.emp_id = 12;
+
+/
+
+INSERT INTO tabProjects
+SELECT typProject (2, ref(e), 'Research Project')
+FROM tabEmployee e
+WHERE e.emp_id = 13;
+
+/
+
+INSERT INTO tabProjects
+SELECT typProject (3, ref(e), 'Research Project')
+FROM tabEmployee e
+WHERE e.emp_id = 14;
+
+/
+
+ALTER TABLE tabProjects ADD PRIMARY KEY (pID);

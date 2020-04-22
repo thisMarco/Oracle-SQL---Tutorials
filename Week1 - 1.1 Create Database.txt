@@ -1,0 +1,84 @@
+/* 1.1 Create the database */
+
+DROP TABLE CustomerAccount;
+DROP TABLE Customer;
+DROP TABLE Employee;
+DROP TABLE Accounts;
+DROP TABLE Branch;
+
+
+CREATE TABLE Branch
+    (
+        bId VARCHAR2(10) NOT NULL,
+        street VARCHAR(200),
+        city VARCHAR2(200),
+        p_code VARCHAR2(8),
+        bPhone VARCHAR2(15),
+        
+        PRIMARY KEY (bID)
+    );
+
+CREATE TABLE Accounts
+    (
+        accNumber VARCHAR2(10) NOT NULL,
+        accType VARCHAR2(20),
+        balance NUMBER(10,2),
+        bId VARCHAR2(10),
+        inRate NUMBER(5,2),
+        limitOfFreeOD NUMBER(5,2),
+        openDate DATE,
+        
+        PRIMARY KEY(accNumber),
+        FOREIGN KEY(bId) REFERENCES branch(bId)
+    );
+
+CREATE TABLE Employee
+    (
+        empId VARCHAR2(10) NOT NULL,
+        street VARCHAR2(200),
+        city VARCHAR2(20),
+        p_code VARCHAR2(8),
+        empFirtName VARCHAR2(30),
+        empLastName VARCHAR2(50),
+        empHomePhone VARCHAR2(15),
+        empMobilePhone1 VARCHAR2(15),
+        empMobilePhone2 VARCHAR(15),
+        supervisorId VARCHAR(10),
+        title VARCHAR2(20),
+        salary NUMBER(6,2),
+        empNiNumber VARCHAR2(9),
+        bId VARCHAR2(10),
+        joinDate DATE,
+        
+        PRIMARY KEY(empId),
+        FOREIGN KEY(bId) REFERENCES branch(bId)
+    );
+
+ALTER TABLE Employee
+    MODIFY salary NUMBER(10,2);
+    
+CREATE TABLE Customer
+    (
+        cusId VARCHAR2(10) NOT NULL,
+        street VARCHAR2(200),
+        city VARCHAR2(20),
+        p_Code VARCHAR2(8),
+        cusFirstName VARCHAR2(30),
+        cusLastName VARCHAR2(50),
+        cusHomePhone VARCHAR2(15),
+        cusMobilePhone1 VARCHAR2(15),
+        cusMobilePhone2 VARCHAR2(15),
+        cusNiNum VARCHAR2(9),
+        
+        PRIMARY KEY(cusId)
+    );
+    
+CREATE TABLE CustomerAccount
+    (
+        cusId VARCHAR2(10),
+        accNumber VARCHAR2(10),
+        
+        PRIMARY KEY(cusId, accNumber),
+        FOREIGN KEY(cusId) REFERENCES Customer(cusId),
+        FOREIGN KEY(accNumber) REFERENCES Accounts(accNumber)
+    );

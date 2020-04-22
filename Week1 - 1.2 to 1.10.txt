@@ -1,0 +1,94 @@
+/* 1.2 Find employees whose Surname includes “on” */
+
+SELECT emplastname, empfirtname FROM employee
+    WHERE emplastname LIKE '%on%';
+
+/* 1.3 Find employees whose salary is more than £2800 */
+
+SELECT emplastname, empfirtname, salary
+    FROM employee
+        WHERE salary > 2800;
+
+/* 1.4 Find employees who work at Edinburgh branch */
+
+SELECT emplastname, empfirtname
+    FROM employee
+        WHERE bid = 'EDIN1';
+
+/* 1.5 Find employees whose supervisor is a Regional Manager */
+
+SELECT emplastname, empfirtname
+    FROM employee e
+        WHERE 
+            supervisorid = (
+                            SELECT empid
+                                FROM employee e
+                                    WHERE title = 'Regional Manager'
+                            );
+
+/* 1.6 Find customers who have a current account at the Morningside, Edinburgh branch and the balance is more than £2000 */
+
+SELECT cusfirstname, cuslastname
+    FROM customer
+        WHERE
+            cusId = (
+                     SELECT cusid
+                        FROM customeraccount
+                            WHERE
+                                accnumber = (
+                                             SELECT accnumber
+                                                FROM accounts
+                                                    WHERE bid = 'EDIN1' AND balance > 2000
+                                            )
+                    );
+
+/* 1.7 Find employees whose salary is more than Fred Palma’s salary at Edinburgh branch */
+
+SELECT empfirtname, emplastname, salary
+    FROM employee
+        WHERE salary > (
+                        SELECT salary
+                            FROM employee
+                                WHERE empfirtname = 'Fred'
+                                    AND emplastname = 'Palma'
+                        )
+            AND bid = 'EDIN1';
+
+/* 1.8 Find customers who opened their accounts before 01/09/2018 */
+
+SELECT c.cusid, c.cusfirstname, c.cuslastname
+    FROM customer c
+        WHERE c.cusid IN (
+                            SELECT cusid
+                                FROM customeraccount
+                                WHERE accnumber IN (
+                                                        SELECT accnumber
+                                                            FROM accounts
+                                                                WHERE opendate < '01-Sep-18'
+                                                       )
+                        );
+
+/* 1.9 Find customers who have the highest balance in current account in the bank */
+
+SELECT cusfirstname, cuslastname
+    FROM customer
+        WHERE cusid = (
+                        SELECT cusid
+                            FROM customeraccount
+                                WHERE accnumber = (
+                                                    SELECT accnumber
+                                                        FROM accounts
+                                                            WHERE balance = (
+                                                                             SELECT MAX(balance)
+                                                                             FROM accounts
+                                                                             )
+                                                  )
+                      )
+
+/* 1.10 At each branch, find customers who have the highest balance */
+
+SELECT a.bid, MAX(a.balance)
+    FROM customer c, accounts a
+    INNER JOIN customeraccount USING(accnumber)
+    INNER JOIN customer USING(cusid)
+    GROUP BY bid;
